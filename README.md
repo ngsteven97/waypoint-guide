@@ -1,18 +1,18 @@
 # Waypoint Guide
 
-![Waypoint on a desk showing live departures](images/01-hero.png)
-
 Waypoint is a live departures board for your desk, shelf or wall. It shows real-time **trains, buses and Tube services**, the **aircraft flying overhead**, and **satellites passing over your home**, all on a crisp OLED display.
 
 This guide takes you from the box to a working board in about ten minutes.
+
+<img width="1772" height="982" alt="IMG_0293" src="https://github.com/user-attachments/assets/7ea9d35d-e186-4d52-a229-3d169c012749" />
 
 ## Quick start
 
 1. **Plug it in** to a USB power supply.
 2. **Join the "Waypoint" Wi-Fi network** on your phone and tell the board your home Wi-Fi details.
-3. **Open the setup page** in your browser and run the **Setup Wizard** with your postcode.
-4. *(Train times only)* Paste in a free Rail Data Marketplace key.
-5. Done. Use the **touch button** to flip between stations and modes.
+3. **Open the setup page** in your browser and run the **Setup Wizard** with your postcode. Based on your postcode, it should find all your local services and pinpoint your location for plane/satellite tracking.
+4. **Enter your API keys** Paste in your API keys for the relevant services that you want.
+6. Reboot and done! Use the **touch button** to flip between stations and modes.
 
 The rest of this guide walks through each step with pictures.
 
@@ -25,7 +25,7 @@ The rest of this guide walks through each step with pictures.
 3. [Connect to Wi-Fi](#3-connect-to-wi-fi)
 4. [Open the setup page](#4-open-the-setup-page)
 5. [Run the Setup Wizard](#5-run-the-setup-wizard)
-6. [Get a Rail key (train times only)](#6-get-a-rail-key-train-times-only)
+6. [Getting your API keys](#6-getting-your-api-keys)
 7. [Using the touch button](#7-using-the-touch-button)
 8. [Changing things later](#8-changing-things-later)
 9. [Updates](#9-updates)
@@ -39,21 +39,24 @@ The rest of this guide walks through each step with pictures.
 ## 1. What you need
 
 - Your Waypoint
-- A USB power supply and cable <!-- TODO: confirm what is supplied in the box and the connector type -->
+- A USB power supply and cable (your Waypoint uses a 5V supply, so requires an old-school USB-A to USB-C cable!)
 - A **2.4 GHz Wi-Fi network** and its password. Waypoint can't use 5 GHz-only networks. Most home routers broadcast both, so you don't normally need to do anything.
 - A phone, tablet or computer on the same Wi-Fi network
 
-![The back of the unit, showing the power connection and the touch sensor](images/02-unit-overview.png)
+<img width="2364" height="966" alt="back" src="https://github.com/user-attachments/assets/503e60e2-5604-42a0-a927-cae5bc266497" />
 
-Train times need one free key (see [section 6](#6-get-a-rail-key-train-times-only)). Buses, Tube, aircraft and satellites need no keys at all.
+> Note: there may be minor differences to the design of the 3D printed enclosure depending on the order batch - don't worry, the hardware will remain exactly the same and your Waypoint will work as intended!
+
+Train times need an API key from National Rail (see [section 6](#6-get-a-rail-key-train-times-only)). 
+Normal operation of Buses, Tube, aircraft and satellites need no keys at all.
+There is an optional API key for OpenWeather to display the weather on the screen.
+There is also an optional API key for RapidAPI flight tracking to track a live flight.
 
 ---
 
 ## 2. Plug in your Waypoint
 
 Connect the power. After a moment the display lights up with a short animated splash.
-
-![Start-up splash screen](images/03-boot-splash.png)
 
 > **Tip:** try not to touch the touch sensor during the first couple of seconds after power-up. Touching it during the splash starts the factory-reset countdown (see [section 12](#12-resetting-your-waypoint)). Letting go straight away cancels it.
 
@@ -65,25 +68,38 @@ A brand-new Waypoint doesn't know your Wi-Fi yet, so it creates a little Wi-Fi n
 
 **1.** After the splash, the display shows **"Waypoint first-time setup"**:
 
-![Waypoint first-time setup screen](images/04-wifi-setup-screen.png)
+<img width="5712" height="3213" alt="setup" src="https://github.com/user-attachments/assets/51c690af-9968-4f5b-9fd7-51bc3c932874" />
 
-**2.** On your phone, open **Wi-Fi settings** and join the network called **Waypoint**. There's no password.
+<p>&nbsp;</p>
 
-![Joining the Waypoint network on a phone](images/05-phone-wifi-list.png)
+<img align="right" width="374" alt="Waypoint Wi-Fi network in the Windows Wi-Fi list" src="https://github.com/user-attachments/assets/4777da9e-a4ba-4356-b64f-f9945a868997" />
+
+**2.** On your phone/laptop/tablet/PC, open **Wi-Fi settings** and join the network called **Waypoint**. There's no password.
+
+<br clear="right">
+<p>&nbsp;</p>
 
 **3.** A setup page should open by itself. If it doesn't, open a web browser and go to **http://192.168.4.1**.
 
-![The Wi-Fi setup page menu](images/06-wifi-portal-menu.png)
+<img width="1143" height="860" alt="image" src="https://github.com/user-attachments/assets/9be8f6fd-f39e-4608-82fb-b35df4863257" />
+
+<p>&nbsp;</p>
+
+<img align="right" width="470" alt="Wi-Fi setup page with SSID and password fields" src="https://github.com/user-attachments/assets/4362b08c-a522-44c9-a277-154b36545df6" />
 
 **4.** Tap **Configure WiFi**, choose your home network from the list and type its password. Then tap **Save**.
 
-![Choosing your home Wi-Fi network](images/07-wifi-portal-networks.png)
+<br clear="right">
+
+<p>&nbsp;</p>
+
+<img align="right" width="415" alt="Saving credentials message" src="https://github.com/user-attachments/assets/88aad584-5b8e-4ac8-859c-f7f0026a50b7" />
 
 **5.** Waypoint connects to your network. When it works, the display shows **"Wi-Fi Connected"** along with the board's **IP address** in the corner. Make a note of it; you may need it in the next step.
 
-![Wi-Fi Connected with the IP address](images/08-wifi-connected.png)
+<br clear="right">
 
-If the password is wrong, or the network is out of range, Waypoint goes back to its own **Waypoint** network so you can try again.
+<p>&nbsp;</p>
 
 ---
 
@@ -97,7 +113,7 @@ If that doesn't load (some phones and routers don't support `.local` addresses),
 
 The display now shows **"Waypoint Setup – Complete setup in your browser"**, with the address to use:
 
-![Display asking you to complete setup in your browser](images/09-oled-complete-setup.png)
+<img width="2364" height="1330" alt="ip address" src="https://github.com/user-attachments/assets/4a568db9-b45a-450c-bc18-8a76d9441698" />
 
 The page automatically opens the **Setup Wizard**.
 
@@ -111,18 +127,18 @@ The wizard has four steps and sets up all of Waypoint's modes in one go. You can
 
 Type your **postcode** and tap **Find Stops**. Waypoint uses it to find your nearest stations and stops, to centre the aircraft and satellite tracking on your home, and for local weather.
 
-![Wizard step 1](images/10-wizard-step1.png)
+<img width="1688" height="597" alt="image" src="https://github.com/user-attachments/assets/5c597924-6e3d-4643-8286-66d876f69fbd" />
 
 ### Step 2: Confirm and configure
 
 Check the suggestions and change anything that isn't right.
 
-![Wizard step 2](images/11-wizard-step2.png)
+<img align="right" width="70%" alt="Waypoint setup screen" src="https://github.com/user-attachments/assets/2437e316-4a5c-4bc8-82e1-0993370b783e" />
 
-- **Nearest train station**: pick one.
+- **Nearest train station**: pick one, or **Skip**.
 - **Nearest Tube / DLR / Elizabeth line station**: pick one, or **Skip** if you don't use them.
 - **Nearest bus stop**: pick one, or **Skip**.
-- **Air mode**: the search radius is how far from home to look for aircraft (default 20 nautical miles).
+- **Air mode**: how Waypoint looks for aircraft near you.
 - **Space mode**: choose which satellites to look for (space stations, Starlink, weather satellites and more).
 - **Weather**: switch on to show the temperature and conditions. This needs a free OpenWeatherMap key (next step).
 - **Hostname**: the name in `waypoint.local`. Leave it as it is unless you have more than one Waypoint.
@@ -130,22 +146,28 @@ Check the suggestions and change anything that isn't right.
 - **Sleep Mode**: blanks the display overnight between the hours you choose.
 - **Firmware updates**: leave both ticked and Waypoint keeps itself up to date.
 
+<br clear="right">
+
 ### Step 3: API keys
 
-![Wizard step 3](images/12-wizard-step3.png)
+<img width="1696" height="1271" alt="image" src="https://github.com/user-attachments/assets/2ee5319d-23f7-45a5-9c29-ff55e0e7f777" />
 
-Only **train times** need a key. Everything else here is optional, so you can leave the fields blank and add keys later.
 
-| Key | Needed for |
-|---|---|
-| **Rail Data Marketplace key** | Train departures ([how to get one](#6-get-a-rail-key-train-times-only)) |
-| **OpenWeatherMap key** | Weather display |
-| **TfL key** | Optional. Reduces the chance of Tube and bus lookups being rate-limited. |
-| **RapidAPI key** | Optional. Only for Flight Watch scheduled times. |
+An API key is a free password that a data provider gives you so Waypoint can fetch their data. Which ones you need depends on what you want Waypoint to show. You can paste keys in here, or leave the boxes blank and add them later under **⚙ Settings → API Keys**.
+
+| Key | Required? | Needed for | How to get it |
+|---|---|---|---|
+| **Rail Data Marketplace key** | **Required for train times** | Train departures | [Steps below](#rail-data-marketplace-key-train-times) |
+| **OpenWeatherMap key** | Optional | Weather on the display | [Steps below](#openweathermap-key-weather) |
+| **TfL key** | Optional (recommended) | Smoother Tube and bus lookups | [Steps below](#tfl-key-tube-and-bus) |![Uploading 192.168.3.181_setup.png…]()
+
+| **RapidAPI key** | Optional | Flight Watch scheduled times | [Steps below](#rapidapi-key-flight-watch) |
+
+Buses, Tube, aircraft and satellites all work without any key at all.
 
 ### Step 4: Default mode
 
-![Wizard step 4](images/13-wizard-step4.png)
+<img width="1368" height="1624" alt="192 168 3 181_setup" src="https://github.com/user-attachments/assets/2c08ca77-a152-4164-a2b9-bdc02f789a7e" />
 
 - **Modes This Board Uses**: untick anything you don't want. The touch button will skip those modes.
 - **Default board mode**: Ground (trains, buses, Tube), Air (planes) or Space (satellites). This is what Waypoint starts in.
@@ -157,36 +179,81 @@ Tap **Apply Everything to Board**. Your first departures will appear on the disp
 
 ---
 
-## 6. Get a Rail key (train times only)
+## 6. Getting your API keys
 
-National Rail data is free, but the Rail Delivery Group asks everyone to register for a key. It takes about five minutes.
+Each key below is free, and each has its own short set of steps. Only the **Rail** key is needed for a standard setup; the rest are optional extras.
 
-1. Go to [raildata.org.uk](https://raildata.org.uk) and create a free account.
-2. Open the **Data Product Catalogue** and search for **LDBWS**.
-3. Choose **Live Departure Board (Public)** and **subscribe**, accepting the licence.
-4. Go to **My Subscriptions** and open the **Specification** tab.
-5. Copy the **Consumer key**. (Not the *secret*.)
-6. Back on your Waypoint page, paste it into the **Rail Data Marketplace key** box and save.
+**Where to paste a key:** open your Waypoint page, go to **⚙ Settings**, find the **API Keys** box, paste the key into the matching field and tap **💾 Save API Keys**. Reboot afterwards (**🖥 System → ⟳ Reboot**) so the new key is picked up. You can also paste keys straight into step 3 of the Setup Wizard.
 
-Until Waypoint has a key, it stays on the setup screen if it's set to show trains. Once you save it, it restarts by itself.
+---
 
-> If you already have an older National Rail "Darwin" token, you can use it by choosing **Legacy OpenLDBWS** as the feed. New tokens are no longer issued, so most people should use the Rail Data Marketplace key.
+### Rail Data Marketplace key (train times)
 
-### Optional keys
+**Required if you want train departures.** Takes about five minutes.
 
-**OpenWeatherMap (weather):** sign up at [openweathermap.org](https://home.openweathermap.org/users/sign_up), confirm your email, open the **API keys** tab and copy the default key. New keys can take up to a couple of hours to start working.
+1. Go to [raildata.org.uk](https://raildata.org.uk) and **sign up** for a free account.
+2. Open the **Data Product Catalogue**.
+3. Search for **LDBWS**.
+4. Choose **Live Departure Board (Public)** (also listed as *Live Departure Board 1.1*) and **subscribe**.
+5. Accept the licence.
+6. Open **My Subscriptions** and select your new subscription.
+7. Go to the **Specification** tab and copy the **Consumer key**. Copy the *key*, not the *secret*.
+8. In Waypoint, set **National Rail Feed** to **Rail Delivery Group feeds (recommended)**, paste the key into **Rail Data Marketplace API Key** and save.
 
-**TfL (Tube and bus, optional):** register at the [TfL API portal](https://api-portal.tfl.gov.uk/signup), open **Products**, subscribe to **500 Requests per min**, then copy your key from **Profile → Show key**.
+Until Waypoint has a Rail key, a unit set to show trains stays on its setup screen. Once the key is saved, it restarts by itself.
 
-**RapidAPI / AeroDataBox (Flight Watch, optional):** sign up at [rapidapi.com](https://rapidapi.com), subscribe to the free **Basic** plan on the **AeroDataBox** API page, and copy the **X-RapidAPI-Key** from any sample code snippet.
+> **Already have an older National Rail "Darwin" token?** (It looks like `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.) Choose **Legacy OpenLDBWS** as the feed and paste it in. New Darwin tokens are no longer issued, so most people should use the Rail Data Marketplace key above.
+
+---
+
+### OpenWeatherMap key (weather)
+
+**Optional.** Only needed if you switch on the weather display.
+
+1. Go to [openweathermap.org](https://home.openweathermap.org/users/sign_up) and **sign up** for a free account.
+2. Open the confirmation email and **confirm your address**.
+3. Sign in and open the **API keys** tab.
+4. Copy the **default key** (a 32-character string of letters and numbers).
+5. In Waypoint, paste it into **OpenWeatherMap API Key** and save.
+
+The free "Current Weather" tier is plenty. **New keys can take up to a couple of hours to start working.** If Waypoint reports an invalid key straight after you sign up, wait a while and try again.
+
+---
+
+### TfL key (Tube and bus)
+
+**Optional, but recommended.** The Tube and bus services work without a key, but a key makes it less likely that lookups are slowed or refused when TfL is busy.
+
+1. Go to the [TfL API portal](https://api-portal.tfl.gov.uk/signup) and **sign up** for a free account.
+2. Open **Products**.
+3. Choose **500 Requests per min**.
+4. Enter a name for the subscription (anything you like, for example "Waypoint") and tap **Subscribe**.
+5. Open your **Profile** and tap **Show key** to reveal your key (32 characters).
+6. In Waypoint, paste it into **TfL API Key** and save.
+
+---
+
+### RapidAPI key (Flight Watch)
+
+**Optional.** Flight Watch tracks one particular flight. Without a key it still works if you enter the departure and arrival details yourself. With a key, Waypoint can fetch the scheduled times automatically when you enter a flight number.
+
+1. Go to [rapidapi.com](https://rapidapi.com) and **sign up** or sign in.
+2. Search for **AeroDataBox** and open its API page.
+3. Open the **Pricing** tab and subscribe to the free **Basic** plan.
+4. Open any endpoint on the API page and copy the **X-RapidAPI-Key** value from the sample code snippet.
+5. In Waypoint, paste it into the RapidAPI key field and save.
+
+The free plan has a small quota, but it's plenty for occasional Flight Watch lookups.
+
+<p>
+<img height="220" alt="Flight tracking 1" src="https://github.com/user-attachments/assets/1a4c01e5-c671-4458-a51e-af2d10e0454d" /> <img height="220" alt="Flight tracking 2" src="https://github.com/user-attachments/assets/31686791-dcbd-483f-ae20-9b9dcea47445" />
+</p>
 
 ---
 
 ## 7. Using the touch button
 
-Waypoint has no screen buttons. Instead, there is a **touch sensor** you just tap or hold with a finger.
-
-![Finger on the touch sensor](images/14-touch-sensor.png)
+Waypoint has no screen buttons. Instead, there is a **touch sensor** you just tap or hold with a finger. This can be found on the left side of the unit.
 
 - **Tap**: touch and let go quickly.
 - **Hold**: keep your finger on it for about half a second or more.
@@ -200,9 +267,7 @@ Waypoint has no screen buttons. Instead, there is a **touch sensor** you just ta
 | **Hold** | Switch between **Rail → Bus → Tube → Combined**. |
 | **Keep holding** | A **"Switch to Air Mode"** prompt appears. Keep holding to confirm, or let go to stay put. |
 
-![Slot banner](images/15-slot-banner.png)
-
-![Switch to Air Mode prompt with progress bar](images/16-mode-switch-prompt.png)
+<img width="2364" height="1330" alt="ground to air" src="https://github.com/user-attachments/assets/7c4c40a4-ae02-4e4d-bd4e-56379818e97b" />
 
 ### Aircraft (Air mode)
 
@@ -213,12 +278,16 @@ Waypoint has no screen buttons. Instead, there is a **touch sensor** you just ta
 
 If you're tracking a specific flight with **Flight Watch**, a tap switches between the progress bar and the live panel, and a hold lets you cancel tracking.
 
+<img width="2364" height="1330" alt="air to space" src="https://github.com/user-attachments/assets/93ebf2b4-7c12-4401-9711-c856eb4d6b33" />
+
 ### Satellites (Space mode)
 
 | Do this | And this happens |
 |---|---|
 | **Tap** | Flip through the satellites overhead, and back to the list. |
 | **Hold** | "Switch to Ground Mode" prompt. Keep holding to confirm. |
+
+<img width="2364" height="1330" alt="space to ground" src="https://github.com/user-attachments/assets/54df5159-75ff-4ffa-9d12-6568a8caa55e" />
 
 The hold cycle goes **Ground → Air → Space → Ground**. Any mode you've turned off is skipped.
 
@@ -228,13 +297,34 @@ You can also switch modes from the **Ground / Air / Space** tabs at the top of t
 
 ## 8. Changing things later
 
-Open **http://waypoint.local** (or the IP address) any time to change settings.
+Open **http://waypoint.local** (or the IP address) any time to change settings. There are different Waypoint pages depending on what mode you are currently in, so the tabs you see will vary. Use the **🚉 Ground / ✈ Air / 🛸 Space** buttons at the top of the page to jump between modes.
 
-![The Waypoint page](images/17-dashboard.png)
+<p>
+<img width="32%" alt="Ground mode web page" src="https://github.com/user-attachments/assets/3d5a0eb4-ff09-4d90-9f52-5c54051e317e" /> <img width="32%" alt="Air mode web page" src="https://github.com/user-attachments/assets/8869048c-5f39-4ef5-a1c5-082bc0ca1c49" /> <img width="32%" alt="Space mode web page" src="https://github.com/user-attachments/assets/c3e5b77c-6979-4384-9475-7ff678ec0155" />
+</p>
 
-- **Rail, Bus, Tube, Combined tabs**: add more stations and stops (up to four each), filter by platform, route or line, or add a walking-time offset so you only see trains you can still catch.
-- **⚙ Settings**: brightness, sleep hours, flip display, weather, hostname, timezone outside the UK, which modes to use and API keys. Tap **💾 Save Settings** when you're done.
-- **🖥 System**: reboot, check for updates, back up or restore your settings, and see how well Waypoint is running.
+### 🚉 Ground mode (trains, buses and tubes)
+
+- **🚂 Rail**: add up to four stations. Filter by platform or by a station the train calls at, and add a walking-time offset so you only see trains you can still catch.
+- **🚌 Bus**: add up to four stops. Search by name or postcode, and optionally filter by route number.
+- **🚇 Tube**: add up to four stations. Filter by line and direction.
+- **⊞ Combined**: merge Rail, Bus and Tube slots into one board, sorted by departure time.
+
+### ✈ Air mode (aircraft overhead)
+
+- **✈ Air**: set where Waypoint looks (search for a postcode or enter coordinates), how far out it scans, your preferred units (aviation, imperial or metric), and how close a plane has to get before the full-detail view appears. A live scan preview shows what's overhead right now.
+- **🎯 Flight Watch**: enter a flight number to follow one particular flight. The display shows its progress, altitude and speed while it's in range. Adding a free RapidAPI key in Settings lets Waypoint look up the scheduled times for you.
+
+### 🛸 Space mode (satellites overhead)
+
+- **🛸 Space**: set your location, choose which satellites to track (space stations, Starlink, weather, amateur radio, Galileo and others), and adjust when the detail view appears. A live preview shows what's overhead right now.
+- **🎯 Sat Watch**: track one satellite by its NORAD number (the ISS is 25544). The display shows its altitude, speed, position in the sky and the country or ocean it's currently over.
+
+### On every mode
+
+- **⚙ Settings**: choose which modes to use, set brightness and scroll speed, flip the display, set sleep hours, weather, hostname, timezone (if you're outside the UK) and API keys. Tap **💾 Save Settings** when you're done.
+- **🖥 System**: reboot, check for and install firmware updates, back up or restore your settings, erase Wi-Fi, factory reset, and see how well Waypoint is running (signal strength, uptime, free memory and so on).
+- **📖 Guide**: a built-in version of this setup guide, plus a **🧭 Setup Wizard** that finds your nearest stops and configures the board for you.
 
 It's a good idea to tap **Backup Config** on the System tab once you're happy with your setup.
 
@@ -259,7 +349,7 @@ No ongoing fees come with Waypoint itself. The data providers it uses are free, 
 No. Everything is done in a web browser on your phone or computer. You only need to be on the same Wi-Fi as Waypoint.
 
 **Does it work outside the UK?**
-Air and Space modes work anywhere. Trains, buses and the Tube use UK data. Set your timezone under Settings if you're outside the UK.
+Air and Space modes work anywhere. Trains, buses and the Tube use UK data. The data will still be live data, but might not help you get the train if it's 500 miles away! Set your timezone under Settings if you're outside the UK (for the clock.)
 
 **Can I use it with 5 GHz Wi-Fi?**
 Waypoint needs a 2.4 GHz network. If your router has separate names for 2.4 and 5 GHz, choose the 2.4 GHz one.
@@ -333,7 +423,7 @@ Open **🖥 System** and note down the diagnostics (Wi-Fi signal, free memory, l
 | **Factory reset** | **🖥 System → Factory Reset** | Everything: settings, keys and Wi-Fi |
 | **Factory reset using the touch button** | Unplug and replug the power, then **touch and hold the sensor during the start-up splash** (the first couple of seconds). A "Factory Reset" screen appears. Keep holding until the bar fills. | Everything: settings, keys and Wi-Fi |
 
-![Factory reset screen](images/18-factory-reset-screen.png)
+<img width="1330" height="830" alt="factory reset" src="https://github.com/user-attachments/assets/5a6c2964-3ccc-403f-80ac-9218a11c1857" />
 
 The touch-button reset is useful if you can't reach the web page. Let go before the bar fills to cancel.
 
@@ -341,7 +431,7 @@ The touch-button reset is useful if you can't reach the web page. Let go before 
 
 ## 13. Support
 
-<!-- TODO: add support contact details, returns/warranty information and any order-number instructions. -->
+If you have any issues with your Waypoint at any time, or have an suggestions for potential improvement, do not hesitate to contact me directly via the means you purchased your Waypoint from.
 
 If you need help, please include your **firmware version** (shown at the top of the Waypoint page, and on the System tab) and a description of what the display shows.
 
@@ -350,3 +440,5 @@ If you need help, please include your **firmware version** (shown at the top of 
 ## Data sources
 
 Waypoint uses data from National Rail / Rail Delivery Group, Transport for London, BusTimes, adsb.lol (with adsb.fi as a fallback), OpenWeatherMap, AeroDataBox and public satellite orbital data. Each is credited on the display when Waypoint starts, and each is subject to its own licence and terms.
+
+https://github.com/user-attachments/assets/24549fa2-bc2c-4948-b061-1f4338408637
